@@ -33,7 +33,7 @@ const LoginPage = ({ onLogin, ...props }) => {
           <input
             type="checkbox"
             name="rememberMe"
-            onClick={handleRememberMe}
+            onChange={handleRememberMe}
             checked={rememberMe}
           />
         </div>
