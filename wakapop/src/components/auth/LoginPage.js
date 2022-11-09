@@ -4,13 +4,17 @@ import { login } from './service.js';
 const LoginPage = ({ onLogin, ...props }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleChangeEmail = (event) => setEmail(event.target.value);
   const handleChangePassword = (event) => setPassword(event.target.value);
 
-  const handleSubmit = (event) => {
+  const handleRememberMe = () => setRememberMe(!rememberMe);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    login({ email, password }).then(() => onLogin());
+    await login({ email, password }, rememberMe);
+    onLogin();
   };
 
   const isDisabled = () => !(email.length && password.length);
@@ -24,6 +28,15 @@ const LoginPage = ({ onLogin, ...props }) => {
         <button type="submit" disabled={isDisabled()}>
           Login
         </button>
+        <div>
+          <label htmlFor="rememberMe">Remember me</label>
+          <input
+            type="checkbox"
+            name="rememberMe"
+            onClick={handleRememberMe}
+            checked={rememberMe}
+          />
+        </div>
       </form>
     </div>
   );

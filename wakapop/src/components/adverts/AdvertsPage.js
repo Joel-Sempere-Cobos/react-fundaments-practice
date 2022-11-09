@@ -30,7 +30,7 @@ const AdvertsPage = ({ onLogout }) => {
                   </li>
                   <li>{forSale(advert.sale)}</li>
                   <li>Precio: {advert.price}€</li>
-                  <li>Tags: {advert.tags}</li>
+                  <li>Tags: {advert.tags.join(', ')}</li>
                 </ul>
               </li>
             ))}

@@ -1,7 +1,10 @@
 import client, { setAuthorizationHeader } from '../../api/client.js';
+import storage from '../../utils/storage.js';
 
-export const login = (credentials) => {
-  return client
-    .post('/auth/login', credentials)
-    .then(({ accessToken }) => setAuthorizationHeader(accessToken));
+export const login = async (credentials, rememberMe) => {
+  const { accessToken } = await client.post('/auth/login', credentials);
+  if (rememberMe === true) {
+    storage.set('Auth', accessToken);
+  }
+  return setAuthorizationHeader(accessToken);
 };
