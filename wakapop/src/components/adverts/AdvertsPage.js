@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getAdverts } from './service.js';
 
-const AdvertsPage = () => {
+const AdvertsPage = ({ onLogout }) => {
   const [adverts, setAdverts] = useState([]);
 
   useEffect(() => {
@@ -16,18 +16,21 @@ const AdvertsPage = () => {
     <div className="advertsPage">
       {adverts.length ? (
         <div>
+          <button onClick={onLogout}>Logout</button>
           <h1>Listado de anuncios</h1>
           <ul>
             {adverts.map((advert) => (
               <li key={advert.id}>
                 <ul>
-                  <li>{advert.name}</li>
-                  <li>{forSale(advert.sale)}</li>
-                  <li>{advert.price}</li>
                   <li>
-                    <img width="30%" src={advert.photo} alt="Product photo" />{' '}
+                    <img width="30%" src={advert.photo} alt="Product" />
                   </li>
-                  <li>{advert.tags}</li>
+                  <li>
+                    <strong>{advert.name}</strong>
+                  </li>
+                  <li>{forSale(advert.sale)}</li>
+                  <li>Precio: {advert.price}€</li>
+                  <li>Tags: {advert.tags}</li>
                 </ul>
               </li>
             ))}
