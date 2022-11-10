@@ -5,8 +5,12 @@ const AdvertsPage = ({ onLogout }) => {
   const [adverts, setAdverts] = useState([]);
 
   useEffect(() => {
-    getAdverts().then((adverts) => setAdverts(adverts));
-  }, []);
+    const execute = async () => {
+      const adverts = await getAdverts();
+      setAdverts(adverts);
+    };
+    execute();
+  }, [adverts]);
 
   const forSale = (sale) => {
     return sale ? 'Vendo' : 'Compro';
