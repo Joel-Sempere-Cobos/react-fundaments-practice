@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { login } from './service.js';
+import './LoginPage.css';
 
 const LoginPage = ({ onLogin, ...props }) => {
   const [email, setEmail] = useState('');
@@ -35,15 +36,26 @@ const LoginPage = ({ onLogin, ...props }) => {
   const isButtonEnabled = () => email.length && password.length && !isFetching;
 
   return (
-    <div>
+    <div className="form-page-container">
       <h1>Login to Wakapop</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="email" onChange={handleChangeEmail} value={email} />
-        <input type="password" name="password" onChange={handleChangePassword} value={password} />
-        <button type="submit" disabled={!isButtonEnabled()}>
-          Login
-        </button>
-        <div>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="email-form">
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            onChange={handleChangeEmail}
+            value={email}
+            autoFocus
+          />
+        </div>
+        <div className="password-form">
+          <label htmlFor="password">Password</label>
+          <input type="password" name="password" onChange={handleChangePassword} value={password} />
+        </div>
+
+        <div className="rememberMe-form">
           <label htmlFor="rememberMe">Remember me</label>
           <input
             type="checkbox"
@@ -52,6 +64,11 @@ const LoginPage = ({ onLogin, ...props }) => {
             onChange={handleRememberMe}
             checked={rememberMe}
           />
+        </div>
+        <div className="submit-form">
+          <button type="submit" disabled={!isButtonEnabled()}>
+            Login
+          </button>
         </div>
       </form>
       {error && (

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import Layout from '../layout/Layout.js';
 import { getAdverts } from './service.js';
+import './AdvertsPage.css';
 
 const AdvertsPage = ({ onLogout }) => {
   const [adverts, setAdverts] = useState([]);
@@ -17,33 +19,36 @@ const AdvertsPage = ({ onLogout }) => {
   };
 
   return (
-    <div className="advertsPage">
-      {adverts.length ? (
-        <div>
-          <button onClick={onLogout}>Logout</button>
-          <h1>Listado de anuncios</h1>
-          <ul>
-            {adverts.map((advert) => (
-              <li key={advert.id}>
-                <ul>
-                  <li>
-                    <img width="30%" src={advert.photo} alt="Product" />
+    <Layout onLogout={onLogout}>
+      <div className="advertsPage">
+        {adverts.length ? (
+          <div>
+            <h1>Listado de anuncios</h1>
+            <ul>
+              {adverts.map((advert) => (
+                <div className="advert-container">
+                  <li key={advert.id}>
+                    <ul>
+                      <li>
+                        <img width="30%" src={advert.photo} alt="Product" />
+                      </li>
+                      <li>
+                        <strong>{advert.name}</strong>
+                      </li>
+                      <li>{forSale(advert.sale)}</li>
+                      <li>Precio: {advert.price}€</li>
+                      <li>Tags: {advert.tags.join(', ')}</li>
+                    </ul>
                   </li>
-                  <li>
-                    <strong>{advert.name}</strong>
-                  </li>
-                  <li>{forSale(advert.sale)}</li>
-                  <li>Precio: {advert.price}€</li>
-                  <li>Tags: {advert.tags.join(', ')}</li>
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        'No hay anuncios'
-      )}
-    </div>
+                </div>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          'No hay anuncios'
+        )}
+      </div>
+    </Layout>
   );
 };
 
