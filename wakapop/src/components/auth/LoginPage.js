@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router';
 import { login } from './service.js';
 
 const LoginPage = ({ onLogin, ...props }) => {
@@ -7,6 +8,8 @@ const LoginPage = ({ onLogin, ...props }) => {
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleChangeEmail = (event) => setEmail(event.target.value);
   const handleChangePassword = (event) => setPassword(event.target.value);
@@ -21,6 +24,8 @@ const LoginPage = ({ onLogin, ...props }) => {
       setIsFetching(true);
       await login({ email, password }, rememberMe);
       onLogin();
+      const to = location.state?.from?.pathname || '/';
+      navigate(to, { replace: true });
     } catch (error) {
       setError(error);
       setIsFetching(false);
