@@ -42,7 +42,7 @@ const LoginPage = ({ onLogin, ...props }) => {
         <div className="email-form">
           <label htmlFor="email">Email</label>
           <input
-            type="text"
+            type="email"
             name="email"
             id="email"
             onChange={handleChangeEmail}

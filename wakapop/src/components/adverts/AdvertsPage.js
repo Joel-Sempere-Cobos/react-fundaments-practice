@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import Layout from '../layout/Layout.js';
 import { getAdverts } from './service.js';
 import './AdvertsPage.css';
+import { Link } from 'react-router-dom';
+import Filters from './Filters.js';
 
 const AdvertsPage = ({ onLogout }) => {
   const [adverts, setAdverts] = useState([]);
@@ -12,7 +14,9 @@ const AdvertsPage = ({ onLogout }) => {
       setAdverts(adverts);
     };
     execute();
-  }, [adverts]);
+  }, []);
+
+  console.log(adverts);
 
   const forSale = (sale) => {
     return sale ? 'Vendo' : 'Compro';
@@ -24,13 +28,14 @@ const AdvertsPage = ({ onLogout }) => {
         {adverts.length ? (
           <div>
             <h1>Listado de anuncios</h1>
+            <Filters className="adverts-filters" />
             <ul>
               {adverts.map((advert) => (
-                <div className="advert-container">
-                  <li key={advert.id}>
-                    <ul>
+                <li key={advert.id}>
+                  <Link className="advert-detail-link" to={`/adverts/${advert.id}`}>
+                    <ul className="advert-container">
                       <li>
-                        <img width="30%" src={advert.photo} alt="Product" />
+                        <img width="50%" src={advert.photo} alt="Product" />
                       </li>
                       <li>
                         <strong>{advert.name}</strong>
@@ -39,13 +44,16 @@ const AdvertsPage = ({ onLogout }) => {
                       <li>Precio: {advert.price}€</li>
                       <li>Tags: {advert.tags.join(', ')}</li>
                     </ul>
-                  </li>
-                </div>
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>
         ) : (
-          'No hay anuncios'
+          <div>
+            {' '}
+            No hay anuncios. <Link to="/adverts/new">¡Publica el primer anuncio!</Link>
+          </div>
         )}
       </div>
     </Layout>
