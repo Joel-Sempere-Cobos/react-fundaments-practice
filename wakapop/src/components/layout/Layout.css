@@ -12,8 +12,16 @@
   align-items: center;
   background-color: bisque;
   padding: 10px;
+  bottom: 0;
 }
 
 .navlinks {
   margin: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.navlinks.active {
+  color: blueviolet;
+  text-decoration: underline;
 }

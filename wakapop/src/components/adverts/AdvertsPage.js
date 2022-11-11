@@ -16,8 +16,6 @@ const AdvertsPage = ({ onLogout }) => {
     execute();
   }, []);
 
-  console.log(adverts);
-
   const forSale = (sale) => {
     return sale ? 'Vendo' : 'Compro';
   };
@@ -34,9 +32,9 @@ const AdvertsPage = ({ onLogout }) => {
                 <li key={advert.id}>
                   <Link className="advert-detail-link" to={`/adverts/${advert.id}`}>
                     <ul className="advert-container">
-                      <li>
+                      {/* <li>
                         <img width="50%" src={advert.photo} alt="Product" />
-                      </li>
+                      </li> */}
                       <li>
                         <strong>{advert.name}</strong>
                       </li>

@@ -7,7 +7,7 @@ const Layout = ({ children, onLogout, ...props }) => {
       <header className="header">
         <div className="header-logo">logo</div>
         <div className="header-navbar">
-          <NavLink className="navlinks" to="/adverts/" end>
+          <NavLink className="navlinks" to="/adverts" end>
             Adverts list
           </NavLink>
           <NavLink className="navlinks" to="/adverts/new">

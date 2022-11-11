@@ -26,8 +26,20 @@ const Filters = () => {
 
         <div className="byPrice">
           <label htmlFor="byPrice">Por precio</label>
-          <input type="number" name="byPrice" id="byPriceMin" placeholder="Precio mínimo" />
-          <input type="number" name="byPrice" id="byPriceMax" placeholder="Precio máximo" />
+          <input
+            type="number"
+            name="byPrice"
+            id="byPriceMin"
+            placeholder="Precio mínimo"
+            onWheel={(event) => event.currentTarget.blur()}
+          />
+          <input
+            type="number"
+            name="byPrice"
+            id="byPriceMax"
+            placeholder="Precio máximo"
+            onWheel={(event) => event.currentTarget.blur()}
+          />
         </div>
 
         <div>
