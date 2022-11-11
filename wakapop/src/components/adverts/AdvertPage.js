@@ -29,7 +29,7 @@ const AdvertPage = ({ onLogout }) => {
     return sale ? 'Vendo' : 'Compro';
   };
 
-  const confirmDeleteAd = () => {
+  const askDeleteAd = () => {
     setDeleteAd(!deleteAd);
   };
 
@@ -56,13 +56,13 @@ const AdvertPage = ({ onLogout }) => {
             <li>Precio: {advert.price}€</li>
             <li>Tags: {advert.tags}</li>
           </ul>
-          <button onClick={confirmDeleteAd}>Borrar anuncio</button>
+          <button onClick={askDeleteAd}>Borrar anuncio</button>
           {deleteAd && (
             <div className="delete-confirmation">
               <p> ¿Seguro? No podrás recuperar este anuncio.</p>
               <div>
                 <button onClick={handleDeleteAd}>Confirmar</button>
-                <button onClick={confirmDeleteAd}>Cancelar</button>
+                <button onClick={askDeleteAd}>Cancelar</button>
               </div>
             </div>
           )}
