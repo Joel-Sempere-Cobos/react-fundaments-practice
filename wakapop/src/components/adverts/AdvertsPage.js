@@ -28,7 +28,7 @@ const AdvertsPage = ({ onLogout }) => {
         {adverts.length ? (
           <div>
             <h1>Listado de anuncios</h1>
-            <Filters className="adverts-filters" />
+            <Filters />
             <ul>
               {adverts.map((advert) => (
                 <li key={advert.id}>
