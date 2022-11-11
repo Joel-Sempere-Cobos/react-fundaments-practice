@@ -6,6 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const AdvertPage = ({ onLogout }) => {
   const [advert, setAdvert] = useState('');
+  const [deleteAd, setDeleteAd] = useState(false);
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -25,6 +27,10 @@ const AdvertPage = ({ onLogout }) => {
 
   const forSale = (sale) => {
     return sale ? 'Vendo' : 'Compro';
+  };
+
+  const confirmDeleteAd = () => {
+    setDeleteAd(!deleteAd);
   };
 
   const handleDeleteAd = () => {
@@ -50,7 +56,16 @@ const AdvertPage = ({ onLogout }) => {
             <li>Precio: {advert.price}€</li>
             <li>Tags: {advert.tags}</li>
           </ul>
-          <button onClick={handleDeleteAd}>Borrar anuncio</button>
+          <button onClick={confirmDeleteAd}>Borrar anuncio</button>
+          {deleteAd && (
+            <div className="delete-confirmation">
+              <p> ¿Seguro? No podrás recuperar este anuncio.</p>
+              <div>
+                <button onClick={handleDeleteAd}>Confirmar</button>
+                <button onClick={confirmDeleteAd}>Cancelar</button>
+              </div>
+            </div>
+          )}
         </div>
       </Layout>
     </div>

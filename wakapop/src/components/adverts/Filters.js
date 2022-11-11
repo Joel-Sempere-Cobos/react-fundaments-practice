@@ -1,4 +1,6 @@
 import './Filters.css';
+/* import Slider from 'rc-slider';
+ */ import 'rc-slider/assets/index.css';
 
 const Filters = () => {
   return (
@@ -40,6 +42,8 @@ const Filters = () => {
             placeholder="Precio máximo"
             onWheel={(event) => event.currentTarget.blur()}
           />
+
+          {/* <Slider value={[0, 1000]} range /> */}
         </div>
 
         <div>

@@ -37,7 +37,7 @@ function App({ isInitiallyLogged }) {
           path="/adverts/:id"
           element={
             <RequireAuth isLogged={isLogged}>
-              <AdvertPage />
+              <AdvertPage onLogout={handleLogout} />
             </RequireAuth>
           }
         />
@@ -45,7 +45,7 @@ function App({ isInitiallyLogged }) {
           path="/adverts/new"
           element={
             <RequireAuth isLogged={isLogged}>
-              <NewAdvertPage />
+              <NewAdvertPage onLogout={handleLogout} />
             </RequireAuth>
           }
         />
