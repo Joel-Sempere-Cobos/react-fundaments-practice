@@ -1,17 +1,21 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Layout.css';
 
 const Layout = ({ children, onLogout, ...props }) => {
   return (
     <div>
       <header className="header">
-        <div className="header-logo">logo</div>
+        <div>
+          <Link className="header-logo" to="/adverts">
+            <strong>WAKAPOP</strong>
+          </Link>
+        </div>
         <div className="header-navbar">
           <NavLink className="navlinks" to="/adverts" end>
-            Adverts list
+            Listado de Anuncios
           </NavLink>
           <NavLink className="navlinks" to="/adverts/new">
-            New advert
+            Crear Anuncio
           </NavLink>
         </div>
         <div className="header-logout">

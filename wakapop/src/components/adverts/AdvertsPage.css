@@ -19,3 +19,16 @@ ul {
   background-color: bisque;
   border-radius: 20px;
 }
+
+.photo-container {
+  border-radius: 25px;
+}
+
+.delete-button {
+  margin-bottom: 20px;
+  margin-top: -20px;
+}
+
+.delete-button button {
+  margin: 0 20px;
+}

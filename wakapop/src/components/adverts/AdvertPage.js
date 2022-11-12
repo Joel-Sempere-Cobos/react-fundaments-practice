@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import Layout from '../layout/Layout.js';
 import { deleteAdvertById, getAdvertById } from './service.js';
 import './AdvertsPage.css';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const AdvertPage = ({ onLogout }) => {
   const [advert, setAdvert] = useState('');
   const [deleteAd, setDeleteAd] = useState(false);
+  const [deletedAd, setDeletedAd] = useState(false);
+  const location = useLocation();
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -18,12 +20,13 @@ const AdvertPage = ({ onLogout }) => {
         setAdvert(advert);
       } catch (error) {
         if (error.status === 404) {
-          navigate('404');
+          const to = location.state?.from?.pathname || '/404';
+          navigate(to, { replace: true });
         }
       }
     };
     execute();
-  }, [id, navigate]);
+  }, [id, navigate, location]);
 
   const forSale = (sale) => {
     return sale ? 'Vendo' : 'Compro';
@@ -35,7 +38,10 @@ const AdvertPage = ({ onLogout }) => {
 
   const handleDeleteAd = () => {
     deleteAdvertById(id);
-    navigate('/adverts');
+    setDeletedAd(true);
+    setTimeout(() => {
+      navigate('/adverts');
+    }, 1000);
   };
 
   return (
@@ -47,25 +53,30 @@ const AdvertPage = ({ onLogout }) => {
           <ul className="advert-container">
             <li>
               <div>{!advert.photo && 'No hay foto'}</div>
-              {advert.photo && <img width="50%" src={advert.photo} alt="Product" />}
+              {advert.photo && (
+                <img width="50%" className="photo-container" src={advert.photo} alt="Product" />
+              )}
             </li>
             <li>
               <strong>{advert.name}</strong>
             </li>
             <li>{forSale(advert.sale)}</li>
             <li>Precio: {advert.price}€</li>
-            <li>Tags: {advert.tags}</li>
+            <li>Tags: {advert.tags ? advert.tags.join(', ') : advert.tags}</li>
           </ul>
-          <button onClick={askDeleteAd}>Borrar anuncio</button>
-          {deleteAd && (
-            <div className="delete-confirmation">
-              <p> ¿Seguro? No podrás recuperar este anuncio.</p>
-              <div>
-                <button onClick={handleDeleteAd}>Confirmar</button>
-                <button onClick={askDeleteAd}>Cancelar</button>
+          <div className="delete-button">
+            {!deleteAd && <button onClick={askDeleteAd}>Borrar anuncio</button>}
+            {deleteAd && (
+              <div className="delete-confirmation">
+                <p> ¿Seguro? No podrás recuperar este anuncio.</p>
+                <div>
+                  <button onClick={handleDeleteAd}>Confirmar</button>
+                  <button onClick={askDeleteAd}>Cancelar</button>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+            {deletedAd && <div>¡El anuncio ha sido borrado!</div>}
+          </div>
         </div>
       </Layout>
     </div>

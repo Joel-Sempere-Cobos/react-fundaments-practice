@@ -6,6 +6,12 @@
   padding: 15px 30px;
 }
 
+.header-logo {
+  text-decoration: none;
+  color: black;
+  text-decoration: solid;
+}
+
 .footer {
   display: flex;
   justify-content: center;
@@ -17,11 +23,12 @@
 
 .navlinks {
   margin: 10px;
+  color: blueviolet;
   text-decoration: none;
-  color: black;
 }
 
 .navlinks.active {
-  color: blueviolet;
-  text-decoration: underline;
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
 }

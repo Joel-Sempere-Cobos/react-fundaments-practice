@@ -17,7 +17,8 @@ export const deleteAdvertById = (id) => {
   return client.delete(url);
 };
 
-export const createAdvert = () => {
+export const createAdvert = (formData) => {
+  const config = { 'Content-Type': 'multipart/form-data' };
   const url = `${advertsUrl}`;
-  return client.post(url);
+  return client.post(url, formData, config);
 };
