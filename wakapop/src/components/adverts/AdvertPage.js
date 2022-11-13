@@ -42,7 +42,7 @@ const AdvertPage = ({ onLogout }) => {
     setDeletedAd(true);
     setTimeout(() => {
       navigate('/adverts');
-    }, 1000);
+    }, 1500);
   };
 
   return (
@@ -50,32 +50,33 @@ const AdvertPage = ({ onLogout }) => {
       <Layout onLogout={onLogout}>
         <div className="advertsPage">
           <h1>Detalle del anuncio</h1>
-
-          <ul className="advert-container">
-            <li>
-              <div>
-                {!advert.photo && (
-                  <div>
-                    <img
-                      width="50%"
-                      className="photo-container"
-                      src={require('../../assets/broken-1.png')}
-                      alt="No hay foto"
-                    />
-                  </div>
+          {!deletedAd && (
+            <ul className="advert-container">
+              <li>
+                <div>
+                  {!advert.photo && (
+                    <div>
+                      <img
+                        width="50%"
+                        className="photo-container"
+                        src={require('../../assets/broken-1.png')}
+                        alt="No hay foto"
+                      />
+                    </div>
+                  )}
+                </div>
+                {advert.photo && (
+                  <img width="50%" className="photo-container" src={advert.photo} alt="Product" />
                 )}
-              </div>
-              {advert.photo && (
-                <img width="50%" className="photo-container" src={advert.photo} alt="Product" />
-              )}
-            </li>
-            <li>
-              <strong>{advert.name}</strong>
-            </li>
-            <li>{forSale(advert.sale)}</li>
-            <li>Precio: {advert.price}€</li>
-            <li>Tags: {advert.tags ? advert.tags.join(', ') : advert.tags}</li>
-          </ul>
+              </li>
+              <li>
+                <strong>{advert.name}</strong>
+              </li>
+              <li>{forSale(advert.sale)}</li>
+              <li>Precio: {advert.price}€</li>
+              <li>Tags: {advert.tags ? advert.tags.join(', ') : advert.tags}</li>
+            </ul>
+          )}
           <div className="delete-button">
             {!deleteAd && <button onClick={askDeleteAd}>Borrar anuncio</button>}
             {deleteAd && (
