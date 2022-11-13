@@ -46,6 +46,12 @@ const AdvertsPage = ({ onLogout }) => {
             <h1>Listado de anuncios</h1>
             <Filters getAdvertsFilter={getAdvertsFilter} />
             <ul>
+              {filteredAdverts.length === 0 && (
+                <div>
+                  No hay anuncios que cumplan con esos requisitos. Modifica los filtros o{' '}
+                  <Link to="/adverts/new">publica un anuncio.</Link>
+                </div>
+              )}
               {filteredAdverts.map((advert) => (
                 <li key={advert.id}>
                   <Link className="advert-detail-link" to={`/adverts/${advert.id}`}>

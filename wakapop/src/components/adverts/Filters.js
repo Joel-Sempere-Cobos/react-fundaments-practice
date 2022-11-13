@@ -53,8 +53,6 @@ const Filters = ({ getAdvertsFilter }) => {
     }
   };
   //----------------------
-  /*   const isDisabled = () => !name && !tags.length && sale === '' && !minPrice && !maxPrice;
-   */
   const handleSubmit = (event) => {
     event.preventDefault();
     const filters = [name, sale, minPrice, maxPrice, tags];

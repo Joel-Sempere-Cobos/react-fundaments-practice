@@ -1,7 +1,13 @@
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Layout.css';
 
 const Layout = ({ children, onLogout, ...props }) => {
+  const [confirmLogout, setConfirmLogout] = useState(false);
+
+  const askLogoutConfirmation = () => {
+    setConfirmLogout(!confirmLogout);
+  };
   return (
     <div>
       <header className="header">
@@ -19,7 +25,18 @@ const Layout = ({ children, onLogout, ...props }) => {
           </NavLink>
         </div>
         <div className="header-logout">
-          <button onClick={onLogout}>Logout</button>
+          {confirmLogout && (
+            <div>
+              ¿Seguro que hacer logout?{' '}
+              <div>
+                <button onClick={onLogout}>Sí</button>
+              </div>
+              <div>
+                <button onClick={askLogoutConfirmation}>No</button>
+              </div>
+            </div>
+          )}
+          {!confirmLogout && <button onClick={askLogoutConfirmation}>Logout</button>}
         </div>
       </header>
       {children}
