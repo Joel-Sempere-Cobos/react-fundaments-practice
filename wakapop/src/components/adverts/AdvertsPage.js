@@ -8,7 +8,9 @@ import Filters from './Filters.js';
 const AdvertsPage = ({ onLogout }) => {
   const [adverts, setAdverts] = useState([]);
   const [filters, setFilters] = useState([]);
-  adverts.tags ? console.log(Array.from(adverts[0].tags)) : console.log('na');
+
+  console.log('filters', filters[4]);
+  adverts[0] ? console.log('tags', adverts[0].tags) : console.log('nop');
 
   useEffect(() => {
     const execute = async () => {
@@ -34,8 +36,8 @@ const AdvertsPage = ({ onLogout }) => {
       ((filters[0] === '' || filters[0] === advert.name) &&
         (filters[1] === '' || filters[1] === advert.sale) &&
         (filters[2] === null || filters[2] <= advert.price) &&
-        (filters[3] === null || filters[3] >= advert.price)) /* &&
-        (filters[4] === [] || filters[4] === Array.from(advert.tags)) */
+        (filters[3] === null || filters[3] >= advert.price) &&
+        (!filters[4].length || filters[4].toString() === advert.tags.toString()))
     );
   });
 
