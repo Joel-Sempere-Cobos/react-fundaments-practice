@@ -6,9 +6,9 @@ import './NewAdvertPage.css';
 
 const NewAdvertPage = ({ onLogout }) => {
   const [name, setName] = useState('');
-  const [sale, setSale] = useState(null);
+  const [sale, setSale] = useState('');
   const [tags, setTags] = useState([]);
-  const [price, setPrice] = useState(null);
+  const [price, setPrice] = useState(0);
   const [photo, setPhoto] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
 
@@ -73,11 +73,15 @@ const NewAdvertPage = ({ onLogout }) => {
             <div className="adverts-create">
               <div>
                 <label htmlFor="Name">Nombre</label>
-                <input type="text" name="Name" id="Name" onChange={handleChangeName} />
+                <input type="text" name="Name" id="Name" onChange={handleChangeName} value={name} />
               </div>
 
               <div>
-                <fieldset className="filter-fieldset-radio" onChange={handleChangeSale}>
+                <fieldset
+                  className="filter-fieldset-radio"
+                  onChange={handleChangeSale}
+                  value={sale}
+                >
                   <legend>Tipo de anuncio:</legend>
 
                   <label htmlFor="Sell">Venta</label>
@@ -109,6 +113,7 @@ const NewAdvertPage = ({ onLogout }) => {
                   onChange={handleChangeTags}
                   name="Tags"
                   id="Tags"
+                  value={tags}
                 >
                   <option value="lifestyle" id="lifestyle">
                     Lifestyle

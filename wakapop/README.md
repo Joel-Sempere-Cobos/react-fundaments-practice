@@ -1,4 +1,36 @@
-# Getting Started with Create React App
+# Práctica de fundamentos de React
+
+Desarrollar un frontend con create-react-app. Se apoya en la API [Nodepop](https://github.com/davidjj76/nodepop-api).
+
+## Página de login
+
+El usuario puede introducir email y contraseña. Si son erróneos recibe un mensaje de "unauthorized". Si son correctos recibe el token y es redirigido. Ahora puede navegar por el resto de la página.
+
+Si marca la casilla de "recuérdame", el token se almacena en el Local Storage.
+
+## Layout
+
+El layout se compone de un header y un footer. En el header hay un título con enlace a '/adverts', dos navlinks hacia '/adverts' y '/adverts/new' y el botón de logout, que pide confirmación al ser pulsado.
+
+## Listado de anuncios
+
+Aquí aparecen todos los anuncios disponibles. Si no hay anuncios se mostrará un mensaje para indicarlo.
+
+Si hay anuncios, aparecen varios campos para filtrar los resultados. Si no hubiera resultados para una búsuqeda concreta, se mostraría un mensaje indicándolo.
+
+Nota: he intentado hace que las búsquedas se actualicen al ingresar en los campos, sin tener que pulsar el botón, pero no lo he conseguido...
+
+## Crear anuncio
+
+Formulario de creación de anuncio. Todos los campos son requeridos menos el de la foto. El botón de enviar solo se activa cuando hay algo en todos los campos requeridos.
+
+## Detalle del anuncio
+
+Vista en detalle del anuncio, con su foto, si la hubiera, o un placeholder en su lugar si no la hubiera.
+
+---
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

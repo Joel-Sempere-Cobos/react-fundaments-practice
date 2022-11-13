@@ -67,10 +67,10 @@ const AdvertsPage = ({ onLogout }) => {
                 </li>
               ))}
             </ul>
+            <Filters />
           </div>
         ) : (
           <div>
-            <Filters />
             No hay anuncios. <Link to="/adverts/new">¡Publica el primer anuncio!</Link>
           </div>
         )}

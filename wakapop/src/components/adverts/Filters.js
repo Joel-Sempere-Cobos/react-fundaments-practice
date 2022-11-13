@@ -10,6 +10,8 @@ const Filters = ({ getAdvertsFilter }) => {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
 
+  const filters = [name, sale, minPrice, maxPrice, tags];
+
   const handleChangeName = (event) => {
     setName(event.target.value);
   };
@@ -55,7 +57,6 @@ const Filters = ({ getAdvertsFilter }) => {
   //----------------------
   const handleSubmit = (event) => {
     event.preventDefault();
-    const filters = [name, sale, minPrice, maxPrice, tags];
     getAdvertsFilter(filters);
   };
 

@@ -37,7 +37,7 @@ const LoginPage = ({ onLogin, ...props }) => {
 
   return (
     <div className="form-page-container">
-      <h1>Login to Wakapop</h1>
+      <h1>Bienvenido@ a Wakapop</h1>
       <form className="form" onSubmit={handleSubmit}>
         <div className="email-form">
           <label htmlFor="email">Email</label>
@@ -51,12 +51,12 @@ const LoginPage = ({ onLogin, ...props }) => {
           />
         </div>
         <div className="password-form">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Contraseña</label>
           <input type="password" name="password" onChange={handleChangePassword} value={password} />
         </div>
 
         <div className="rememberMe-form">
-          <label htmlFor="rememberMe">Remember me</label>
+          <label htmlFor="rememberMe">Recuérdame</label>
           <input
             type="checkbox"
             name="rememberMe"

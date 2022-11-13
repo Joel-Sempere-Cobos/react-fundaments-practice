@@ -3,7 +3,7 @@ import './App.css';
 import AdvertsPage from './components/adverts/AdvertsPage.js';
 import LoginPage from './components/auth/LoginPage.js';
 import { logout } from './components/auth/service.js';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, NavLink, Link } from 'react-router-dom';
 import AdvertPage from './components/adverts/AdvertPage.js';
 import NewAdvertPage from './components/adverts/NewAdvertPage.js';
 import RequireAuth from './components/auth/RequireAuth.js';
@@ -59,7 +59,13 @@ function App({ isInitiallyLogged }) {
             <div>
               <Layout>
                 <div className="not-found">
-                  <p>Not fount 404</p>
+                  <p>
+                    <strong>Error 404</strong>: la dirección que has pedido no existe.{' '}
+                  </p>
+                  <p>
+                    Por favor, verifica la url o
+                    <Link to="/adverts"> vuelve al listado de anuncios</Link>
+                  </p>
                 </div>
               </Layout>
             </div>

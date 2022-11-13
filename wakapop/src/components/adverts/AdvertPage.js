@@ -3,6 +3,7 @@ import Layout from '../layout/Layout.js';
 import { deleteAdvertById, getAdvertById } from './service.js';
 import './AdvertsPage.css';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import '../../assets/broken-1.png';
 
 const AdvertPage = ({ onLogout }) => {
   const [advert, setAdvert] = useState('');
@@ -52,7 +53,18 @@ const AdvertPage = ({ onLogout }) => {
 
           <ul className="advert-container">
             <li>
-              <div>{!advert.photo && 'No hay foto'}</div>
+              <div>
+                {!advert.photo && (
+                  <div>
+                    <img
+                      width="50%"
+                      className="photo-container"
+                      src={require('../../assets/broken-1.png')}
+                      alt="No hay foto"
+                    />
+                  </div>
+                )}
+              </div>
               {advert.photo && (
                 <img width="50%" className="photo-container" src={advert.photo} alt="Product" />
               )}
