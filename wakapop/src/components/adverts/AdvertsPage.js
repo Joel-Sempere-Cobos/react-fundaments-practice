@@ -9,9 +9,6 @@ const AdvertsPage = ({ onLogout }) => {
   const [adverts, setAdverts] = useState([]);
   const [filters, setFilters] = useState([]);
 
-  console.log('filters', filters[4]);
-  adverts[0] ? console.log('tags', adverts[0].tags) : console.log('nop');
-
   useEffect(() => {
     const execute = async () => {
       const adverts = await getAdverts();
@@ -35,9 +32,9 @@ const AdvertsPage = ({ onLogout }) => {
       !filters.length ||
       ((filters[0] === '' || filters[0] === advert.name) &&
         (filters[1] === '' || filters[1] === advert.sale) &&
-        (filters[2] === null || filters[2] <= advert.price) &&
-        (filters[3] === null || filters[3] >= advert.price) &&
-        (!filters[4].length || filters[4].toString() === advert.tags.toString()))
+        (filters[2] === 0 || filters[2] <= advert.price) &&
+        (filters[3] === 0 || filters[3] >= advert.price) &&
+        (!filters[4].length || JSON.stringify(filters[4]) === JSON.stringify(advert.tags)))
     );
   });
 

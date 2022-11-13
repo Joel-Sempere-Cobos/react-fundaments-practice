@@ -7,8 +7,8 @@ const Filters = ({ getAdvertsFilter }) => {
   const [name, setName] = useState('');
   const [sale, setSale] = useState('');
   const [tags, setTags] = useState([]);
-  const [minPrice, setMinPrice] = useState(null);
-  const [maxPrice, setMaxPrice] = useState(null);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
 
   const handleChangeName = (event) => {
     setName(event.target.value);
@@ -38,11 +38,19 @@ const Filters = ({ getAdvertsFilter }) => {
 
   //TODO controlar que precio minimo sea menor que máximo y viceversa
   const handleChangeMinPrice = (event) => {
-    setMinPrice(event.target.value);
+    if (event.target.value === '') {
+      setMinPrice(0);
+    } else {
+      setMinPrice(event.target.value);
+    }
   };
 
   const handleChangeMaxPrice = (event) => {
-    setMaxPrice(event.target.value);
+    if (event.target.value === '') {
+      setMaxPrice(0);
+    } else {
+      setMaxPrice(event.target.value);
+    }
   };
   //----------------------
   /*   const isDisabled = () => !name && !tags.length && sale === '' && !minPrice && !maxPrice;
