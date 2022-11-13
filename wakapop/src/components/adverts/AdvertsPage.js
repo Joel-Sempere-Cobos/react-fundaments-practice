@@ -7,6 +7,8 @@ import Filters from './Filters.js';
 
 const AdvertsPage = ({ onLogout }) => {
   const [adverts, setAdverts] = useState([]);
+  const [filters, setFilters] = useState([]);
+  adverts.tags ? console.log(Array.from(adverts[0].tags)) : console.log('na');
 
   useEffect(() => {
     const execute = async () => {
@@ -20,21 +22,35 @@ const AdvertsPage = ({ onLogout }) => {
     return sale ? 'Vendo' : 'Compro';
   };
 
+  const getAdvertsFilter = (filters) => {
+    setFilters(filters);
+  };
+
+  let filteredAdverts = adverts;
+
+  filteredAdverts = adverts.filter((advert) => {
+    return (
+      !filters.length ||
+      ((filters[0] === '' || filters[0] === advert.name) &&
+        (filters[1] === '' || filters[1] === advert.sale) &&
+        (filters[2] === null || filters[2] <= advert.price) &&
+        (filters[3] === null || filters[3] >= advert.price)) /* &&
+        (filters[4] === [] || filters[4] === Array.from(advert.tags)) */
+    );
+  });
+
   return (
     <Layout onLogout={onLogout}>
       <div className="advertsPage">
         {adverts.length ? (
           <div>
             <h1>Listado de anuncios</h1>
-            <Filters />
+            <Filters getAdvertsFilter={getAdvertsFilter} />
             <ul>
-              {adverts.map((advert) => (
+              {filteredAdverts.map((advert) => (
                 <li key={advert.id}>
                   <Link className="advert-detail-link" to={`/adverts/${advert.id}`}>
                     <ul className="advert-container">
-                      {/* <li>
-                        <img width="50%" src={advert.photo} alt="Product" />
-                      </li> */}
                       <li>
                         <strong>{advert.name}</strong>
                       </li>

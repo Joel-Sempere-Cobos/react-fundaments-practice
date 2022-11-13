@@ -3,26 +3,26 @@ import './Filters.css';
  */ import 'rc-slider/assets/index.css';
 import { useState } from 'react';
 
-const Filters = () => {
+const Filters = ({ getAdvertsFilter }) => {
   const [name, setName] = useState('');
-  const [sale, setSale] = useState(null);
+  const [sale, setSale] = useState('');
   const [tags, setTags] = useState([]);
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
-  const [isFetching, setIsFetching] = useState(false);
-
-  console.log(name);
-  console.log(sale);
-  console.log(tags);
-  console.log(minPrice);
-  console.log(maxPrice);
 
   const handleChangeName = (event) => {
     setName(event.target.value);
   };
 
   const handleChangeSale = (event) => {
-    const isForSale = event.target.value;
+    let isForSale = event.target.value;
+    if (isForSale === 'true') {
+      isForSale = true;
+    }
+    if (isForSale === 'false') {
+      isForSale = false;
+    }
+
     setSale(isForSale);
   };
 
@@ -36,6 +36,7 @@ const Filters = () => {
     setTags(tags);
   };
 
+  //TODO controlar que precio minimo sea menor que máximo y viceversa
   const handleChangeMinPrice = (event) => {
     setMinPrice(event.target.value);
   };
@@ -43,13 +44,14 @@ const Filters = () => {
   const handleChangeMaxPrice = (event) => {
     setMaxPrice(event.target.value);
   };
-
+  //----------------------
+  /*   const isDisabled = () => !name && !tags.length && sale === '' && !minPrice && !maxPrice;
+   */
   const handleSubmit = (event) => {
     event.preventDefault();
+    const filters = [name, sale, minPrice, maxPrice, tags];
+    getAdvertsFilter(filters);
   };
-
-  const isDisabled = () =>
-    (!name && !tags.length && sale === '' && !minPrice && !maxPrice) || isFetching;
 
   return (
     <form className="adverts-filters-container" onSubmit={handleSubmit}>
@@ -123,9 +125,7 @@ const Filters = () => {
           </select>
         </div>
 
-        <button type="submit" disabled={isDisabled()}>
-          Filtrar
-        </button>
+        <button type="submit" /* disabled={isDisabled()} */>Filtrar</button>
       </div>
     </form>
   );

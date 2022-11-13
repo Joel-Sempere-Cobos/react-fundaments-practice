@@ -19,7 +19,6 @@ const Layout = ({ children, onLogout, ...props }) => {
           </NavLink>
         </div>
         <div className="header-logout">
-          {' '}
           <button onClick={onLogout}>Logout</button>
         </div>
       </header>
