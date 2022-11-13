@@ -7,6 +7,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import AdvertPage from './components/adverts/AdvertPage.js';
 import NewAdvertPage from './components/adverts/NewAdvertPage.js';
 import RequireAuth from './components/auth/RequireAuth.js';
+import Layout from './components/layout/Layout.js';
+import './App.css';
 
 function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = useState(isInitiallyLogged);
@@ -51,7 +53,18 @@ function App({ isInitiallyLogged }) {
         />
         <Route path="/" element={<Navigate to="/adverts" />} />
 
-        <Route path="/404" element={<div>Not fount 404</div>} />
+        <Route
+          path="/404"
+          element={
+            <div>
+              <Layout>
+                <div className="not-found">
+                  <p>Not fount 404</p>
+                </div>
+              </Layout>
+            </div>
+          }
+        />
         <Route path="*" element={<Navigate to="/404" />} />
       </Routes>
     </div>

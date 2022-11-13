@@ -20,14 +20,14 @@ const NewAdvertPage = ({ onLogout }) => {
   };
 
   const handleChangeSale = (event) => {
-    const isForSale = event.target.value === 'sale' ? true : false;
+    const isForSale = event.target.value;
     setSale(isForSale);
   };
 
   const handleChangeTags = (event) => {
     const tagsArray = Array.from(event.target.selectedOptions);
     const tags = tagsArray.map((option) => {
-      return option.id;
+      return option.value;
     });
     setTags(tags);
   };
@@ -81,10 +81,10 @@ const NewAdvertPage = ({ onLogout }) => {
                   <legend>Tipo de anuncio:</legend>
 
                   <label htmlFor="Sell">Venta</label>
-                  <input type="radio" name="Sell" id="Sell" value={'sale'} />
+                  <input type="radio" name="Sell" id="Sell" value={true} />
 
                   <label htmlFor="Buy">Compra</label>
-                  <input type="radio" name="Sell" id="Buy" value={'buy'} />
+                  <input type="radio" name="Sell" id="Buy" value={false} />
                 </fieldset>
               </div>
 
