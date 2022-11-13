@@ -1,7 +1,10 @@
 import './Filters.css';
-/* import Slider from 'rc-slider';
- */ import 'rc-slider/assets/index.css';
 import { useState } from 'react';
+
+/* import Slider from 'rc-slider';
+ import 'rc-slider/assets/index.css';*/
+/* import storage from '../../utils/storage.js';
+ */
 
 const Filters = ({ getAdvertsFilter }) => {
   const [name, setName] = useState('');
@@ -34,7 +37,6 @@ const Filters = ({ getAdvertsFilter }) => {
       return option.value;
     });
     tags = tags.filter((tag) => tag !== '');
-
     setTags(tags);
   };
 
@@ -58,6 +60,12 @@ const Filters = ({ getAdvertsFilter }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     getAdvertsFilter(filters);
+
+    /* storage.set('name', name);
+    storage.set('sale', sale);
+    storage.set('minPrice', minPrice);
+    storage.set('maxPrice', maxPrice);
+    storage.set('tags', tags); */
   };
 
   return (
