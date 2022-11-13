@@ -32,8 +32,8 @@ const AdvertsPage = ({ onLogout }) => {
       !filters.length ||
       ((filters[0] === '' || filters[0] === advert.name) &&
         (filters[1] === '' || filters[1] === advert.sale) &&
-        (filters[2] === 0 || filters[2] <= advert.price) &&
-        (filters[3] === 0 || filters[3] >= advert.price) &&
+        (filters[2] === '' || filters[2] <= advert.price) &&
+        (filters[3] === '' || filters[3] >= advert.price) &&
         (!filters[4].length || JSON.stringify(filters[4]) === JSON.stringify(advert.tags)))
     );
   });
@@ -61,13 +61,12 @@ const AdvertsPage = ({ onLogout }) => {
                       </li>
                       <li>{forSale(advert.sale)}</li>
                       <li>Precio: {advert.price}€</li>
-                      <li>Tags: {advert.tags.join(', ')}</li>
+                      <li>Tags: {advert.tags && advert.tags.join(', ')}</li>
                     </ul>
                   </Link>
                 </li>
               ))}
             </ul>
-            <Filters />
           </div>
         ) : (
           <div>

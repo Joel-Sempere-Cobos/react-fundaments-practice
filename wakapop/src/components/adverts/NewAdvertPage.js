@@ -8,7 +8,7 @@ const NewAdvertPage = ({ onLogout }) => {
   const [name, setName] = useState('');
   const [sale, setSale] = useState('');
   const [tags, setTags] = useState([]);
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState('');
   const [photo, setPhoto] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
 
@@ -100,6 +100,7 @@ const NewAdvertPage = ({ onLogout }) => {
                   id="Price"
                   onWheel={(event) => event.currentTarget.blur()}
                   onChange={handleChangePrice}
+                  value={price}
                 />
 
                 {/* <Slider value={[0, 1000]} range /> */}

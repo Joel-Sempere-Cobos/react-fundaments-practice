@@ -7,8 +7,8 @@ const Filters = ({ getAdvertsFilter }) => {
   const [name, setName] = useState('');
   const [sale, setSale] = useState('');
   const [tags, setTags] = useState([]);
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(0);
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
 
   const filters = [name, sale, minPrice, maxPrice, tags];
 
@@ -41,7 +41,7 @@ const Filters = ({ getAdvertsFilter }) => {
   //TODO controlar que precio minimo sea menor que máximo y viceversa
   const handleChangeMinPrice = (event) => {
     if (event.target.value === '') {
-      setMinPrice(0);
+      setMinPrice('');
     } else {
       setMinPrice(event.target.value);
     }
@@ -49,7 +49,7 @@ const Filters = ({ getAdvertsFilter }) => {
 
   const handleChangeMaxPrice = (event) => {
     if (event.target.value === '') {
-      setMaxPrice(0);
+      setMaxPrice('');
     } else {
       setMaxPrice(event.target.value);
     }
@@ -65,11 +65,11 @@ const Filters = ({ getAdvertsFilter }) => {
       <div className="adverts-filters">
         <div>
           <label htmlFor="byName">Por nombre</label>
-          <input type="text" name="byName" id="byName" onChange={handleChangeName} />
+          <input type="text" name="byName" id="byName" onChange={handleChangeName} value={name} />
         </div>
 
         <div>
-          <fieldset className="filter-fieldset-radio" onChange={handleChangeSale}>
+          <fieldset className="filter-fieldset-radio" onChange={handleChangeSale} value={sale}>
             <legend>Tipo de anuncio:</legend>
 
             <label htmlFor="bySell">Venta</label>
@@ -92,6 +92,7 @@ const Filters = ({ getAdvertsFilter }) => {
             placeholder="Precio mínimo"
             onWheel={(event) => event.currentTarget.blur()}
             onChange={handleChangeMinPrice}
+            value={minPrice}
           />
           <input
             type="number"
@@ -100,6 +101,7 @@ const Filters = ({ getAdvertsFilter }) => {
             placeholder="Precio máximo"
             onWheel={(event) => event.currentTarget.blur()}
             onChange={handleChangeMaxPrice}
+            value={maxPrice}
           />
 
           {/* <Slider value={[0, 1000]} range /> */}
@@ -113,6 +115,7 @@ const Filters = ({ getAdvertsFilter }) => {
             style={{ padding: '20px' }}
             multiple
             onChange={handleChangeTags}
+            value={tags}
           >
             <option value="" id="none">
               ---
